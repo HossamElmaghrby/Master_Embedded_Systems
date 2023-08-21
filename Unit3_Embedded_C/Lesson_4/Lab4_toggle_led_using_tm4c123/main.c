@@ -1,24 +1,42 @@
 /*Lab4 toggle led with cortexm4
 Eng.Hossam Bahaa
 */
-#define SYSCTL_RGC2_R        (*((volatile unsigned long * )0x400FE108))
-#define GPIO_PORTF_DIR_R     (*((volatile unsigned long * )0x40025400))
-#define GPIO_PORTF_DEN_R     (*((volatile unsigned long * )0x4002551C))
-#define GPIO_PORTF_DATA_R    (*((volatile unsigned long * )0x400253FC))
+#include "Platform_Types.h"
 
-int main(void)
+#define SYSCTL_BASE 0x400FE000
+#define GPIOF_BASE  0x40025000
+
+#define SYSCTL_RCGC2_R 	  *((vuint32_t*)(SYSCTL_BASE + 0x108))
+#define GPIO_PORTF_DIR_R  *((vuint32_t*)(GPIOF_BASE + 0x400))
+#define GPIO_PORTF_DEN_R  *((vuint32_t*)(GPIOF_BASE + 0x51c))
+#define GPIO_PROTF_DATA_R *((vuint32_t*)(GPIOF_BASE + 0x3FC))
+
+
+#define SET_SPECIFIC_BIT(reg,bit)   (reg |= (1<<bit))
+#define RESET_SPECIFIC_BIT(reg,bit) (reg &= ~(1<<bit))
+
+
+void delay(vuint32_t counter);
+
+int main()
 {
-	volatile unsigned long delay_c;
-	SYSCTL_RGC2_R = 0x20;
-	for(delay_c=0 ; delay_c < 200 ; delay_c++);
-	GPIO_PORTF_DIR_R |= 1<<3; // set portf pin3 as output pin
-	GPIO_PORTF_DEN_R |= 1<<3; // Enable GPIO
-	while(1)
-	{
-		GPIO_PORTF_DATA_R |= 1<<3;
-		for(delay_c=0 ; delay_c < 200000 ; delay_c++);
-		GPIO_PORTF_DATA_R &= ~(1<<3);
-		for(delay_c=0 ; delay_c < 200000 ; delay_c++);
-	}
+   SYSCTL_RCGC2_R = 0x20 ;
+   delay(200);
+   SET_SPECIFIC_BIT(GPIO_PORTF_DIR_R,3);
+   SET_SPECIFIC_BIT(GPIO_PORTF_DEN_R,3);
+
+   while(1)
+   {
+      SET_SPECIFIC_BIT(GPIO_PROTF_DATA_R,3);
+      delay(200000);
+      RESET_SPECIFIC_BIT(GPIO_PROTF_DATA_R,3);
+      delay(200000);
+   } 
 	return 0;
+}
+
+void delay(vuint32_t counter)
+{
+	vuint32_t delay_counter ;
+	for(delay_counter = 0 ; delay_counter<counter ; delay_counter++);
 }
