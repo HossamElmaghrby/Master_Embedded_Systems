@@ -1,0 +1,4 @@
+1 Khalid Bahaa 2.8 1 2 3 4 5 
+2 Amer Bahaa 3.4 54 12 55 81 64 
+4 Mohamed Elmaghraby 3.6 54 12 55 81 64 
+5 Hossam Bahaa 3.7 21 12 55 54 5 
