@@ -1,0 +1,301 @@
+
+Atmega32_Drivers.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000019e  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000002  00800060  0000019e  00000232  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000004  00800062  00800062  00000234  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000234  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000264  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000118  00000000  00000000  000002a0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000010a7  00000000  00000000  000003b8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000008dd  00000000  00000000  0000145f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000864  00000000  00000000  00001d3c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000002c8  00000000  00000000  000025a0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000007f1  00000000  00000000  00002868  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000006a4  00000000  00000000  00003059  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000d8  00000000  00000000  000036fd  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 67 00 	jmp	0xce	; 0xce <__vector_12>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 93 00 	jmp	0x126	; 0x126 <__vector_15>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ee e9       	ldi	r30, 0x9E	; 158
+  68:	f1 e0       	ldi	r31, 0x01	; 1
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a2 36       	cpi	r26, 0x62	; 98
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a2 e6       	ldi	r26, 0x62	; 98
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a6 36       	cpi	r26, 0x66	; 102
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 49 00 	call	0x92	; 0x92 <main>
+  8a:	0c 94 cd 00 	jmp	0x19a	; 0x19a <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <main>:
+
+#include "Atmega32_I2C_Driver.h"
+int main(void)
+{
+    unsigned char ch=0;
+    I2C_Set_Address(0b11010000);     //Set Slave Address
+  92:	80 ed       	ldi	r24, 0xD0	; 208
+  94:	0e 94 58 00 	call	0xb0	; 0xb0 <I2C_Set_Address>
+
+
+#include "Atmega32_I2C_Driver.h"
+int main(void)
+{
+    unsigned char ch=0;
+  98:	c0 e0       	ldi	r28, 0x00	; 0
+    I2C_Set_Address(0b11010000);     //Set Slave Address
+    while (1)
+    {
+	    I2C_Read(1);              //Read Byte send ACK
+  9a:	81 e0       	ldi	r24, 0x01	; 1
+  9c:	90 e0       	ldi	r25, 0x00	; 0
+  9e:	0e 94 5a 00 	call	0xb4	; 0xb4 <I2C_Read>
+	    I2C_Write(ch++);         //SLA(1001100)+R(1)
+  a2:	d1 e0       	ldi	r29, 0x01	; 1
+  a4:	dc 0f       	add	r29, r28
+  a6:	8c 2f       	mov	r24, r28
+  a8:	0e 94 60 00 	call	0xc0	; 0xc0 <I2C_Write>
+  ac:	cd 2f       	mov	r28, r29
+  ae:	f5 cf       	rjmp	.-22     	; 0x9a <main+0x8>
+
+000000b0 <I2C_Set_Address>:
+
+#include "Atmega32_I2C_Driver.h"
+
+void I2C_Set_Address(unsigned char address)
+{
+	TWAR = address ;
+  b0:	82 b9       	out	0x02, r24	; 2
+  b2:	08 95       	ret
+
+000000b4 <I2C_Read>:
+}
+unsigned char I2C_Read()
+{
+	unsigned char x=0;
+	TWCR = (1<<TWINT)|(1<<TWEN)|(1<<TWEA);
+  b4:	84 ec       	ldi	r24, 0xC4	; 196
+  b6:	86 bf       	out	0x36, r24	; 54
+	while ((TWCR & 0x80) == 0);
+  b8:	06 b6       	in	r0, 0x36	; 54
+  ba:	07 fe       	sbrs	r0, 7
+  bc:	fd cf       	rjmp	.-6      	; 0xb8 <I2C_Read+0x4>
+	
+}
+  be:	08 95       	ret
+
+000000c0 <I2C_Write>:
+void I2C_Write(unsigned char Byte)
+{
+	TWDR = Byte;
+  c0:	83 b9       	out	0x03, r24	; 3
+	TWCR = (1<<TWINT)|(1<<TWEN);
+  c2:	84 e8       	ldi	r24, 0x84	; 132
+  c4:	86 bf       	out	0x36, r24	; 54
+	while ((TWCR & 0x80)==0);
+  c6:	06 b6       	in	r0, 0x36	; 54
+  c8:	07 fe       	sbrs	r0, 7
+  ca:	fd cf       	rjmp	.-6      	; 0xc6 <I2C_Write+0x6>
+  cc:	08 95       	ret
+
+000000ce <__vector_12>:
+			
+}
+
+//================IRQ Function Definitions===============
+ISR(SPI_STC_vect)
+{
+  ce:	1f 92       	push	r1
+  d0:	0f 92       	push	r0
+  d2:	0f b6       	in	r0, 0x3f	; 63
+  d4:	0f 92       	push	r0
+  d6:	11 24       	eor	r1, r1
+  d8:	2f 93       	push	r18
+  da:	3f 93       	push	r19
+  dc:	4f 93       	push	r20
+  de:	5f 93       	push	r21
+  e0:	6f 93       	push	r22
+  e2:	7f 93       	push	r23
+  e4:	8f 93       	push	r24
+  e6:	9f 93       	push	r25
+  e8:	af 93       	push	r26
+  ea:	bf 93       	push	r27
+  ec:	ef 93       	push	r30
+  ee:	ff 93       	push	r31
+	G_SPI_Config->P_IRQ_CallBack();
+  f0:	e0 91 62 00 	lds	r30, 0x0062	; 0x800062 <__data_end>
+  f4:	f0 91 63 00 	lds	r31, 0x0063	; 0x800063 <__data_end+0x1>
+  f8:	07 80       	ldd	r0, Z+7	; 0x07
+  fa:	f0 85       	ldd	r31, Z+8	; 0x08
+  fc:	e0 2d       	mov	r30, r0
+  fe:	09 95       	icall
+ 100:	ff 91       	pop	r31
+ 102:	ef 91       	pop	r30
+ 104:	bf 91       	pop	r27
+ 106:	af 91       	pop	r26
+ 108:	9f 91       	pop	r25
+ 10a:	8f 91       	pop	r24
+ 10c:	7f 91       	pop	r23
+ 10e:	6f 91       	pop	r22
+ 110:	5f 91       	pop	r21
+ 112:	4f 91       	pop	r20
+ 114:	3f 91       	pop	r19
+ 116:	2f 91       	pop	r18
+ 118:	0f 90       	pop	r0
+ 11a:	0f be       	out	0x3f, r0	; 63
+ 11c:	0f 90       	pop	r0
+ 11e:	1f 90       	pop	r1
+ 120:	18 95       	reti
+
+00000122 <MCAL_UART_SendNoBlock>:
+	 {
+		 
+		 UART_Interrupt_Enable_TXCIE;
+		 TX_str =str ;
+		 MCAL_UART_SendNoBlock(str[0]);
+		 flag_send = 0;
+ 122:	8c b9       	out	0x0c, r24	; 12
+ 124:	08 95       	ret
+
+00000126 <__vector_15>:
+	 }
+}
+
+ISR(USART_TXC_vect)
+{
+ 126:	1f 92       	push	r1
+ 128:	0f 92       	push	r0
+ 12a:	0f b6       	in	r0, 0x3f	; 63
+ 12c:	0f 92       	push	r0
+ 12e:	11 24       	eor	r1, r1
+ 130:	2f 93       	push	r18
+ 132:	3f 93       	push	r19
+ 134:	4f 93       	push	r20
+ 136:	5f 93       	push	r21
+ 138:	6f 93       	push	r22
+ 13a:	7f 93       	push	r23
+ 13c:	8f 93       	push	r24
+ 13e:	9f 93       	push	r25
+ 140:	af 93       	push	r26
+ 142:	bf 93       	push	r27
+ 144:	ef 93       	push	r30
+ 146:	ff 93       	push	r31
+	static uint8 i= 1;
+	if(TX_str[i] != 0)
+ 148:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 14c:	e0 91 64 00 	lds	r30, 0x0064	; 0x800064 <TX_str>
+ 150:	f0 91 65 00 	lds	r31, 0x0065	; 0x800065 <TX_str+0x1>
+ 154:	e8 0f       	add	r30, r24
+ 156:	f1 1d       	adc	r31, r1
+ 158:	80 81       	ld	r24, Z
+ 15a:	88 23       	and	r24, r24
+ 15c:	41 f0       	breq	.+16     	; 0x16e <__vector_15+0x48>
+	{
+		MCAL_UART_SendNoBlock(TX_str[i]);
+ 15e:	0e 94 91 00 	call	0x122	; 0x122 <MCAL_UART_SendNoBlock>
+		i++;
+ 162:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 166:	8f 5f       	subi	r24, 0xFF	; 255
+ 168:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 16c:	05 c0       	rjmp	.+10     	; 0x178 <__vector_15+0x52>
+	}
+	else
+	{
+		i=1;
+ 16e:	81 e0       	ldi	r24, 0x01	; 1
+ 170:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+		flag_send= 1;
+ 174:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <flag_send>
+	}
+}
+ 178:	ff 91       	pop	r31
+ 17a:	ef 91       	pop	r30
+ 17c:	bf 91       	pop	r27
+ 17e:	af 91       	pop	r26
+ 180:	9f 91       	pop	r25
+ 182:	8f 91       	pop	r24
+ 184:	7f 91       	pop	r23
+ 186:	6f 91       	pop	r22
+ 188:	5f 91       	pop	r21
+ 18a:	4f 91       	pop	r20
+ 18c:	3f 91       	pop	r19
+ 18e:	2f 91       	pop	r18
+ 190:	0f 90       	pop	r0
+ 192:	0f be       	out	0x3f, r0	; 63
+ 194:	0f 90       	pop	r0
+ 196:	1f 90       	pop	r1
+ 198:	18 95       	reti
+
+0000019a <_exit>:
+ 19a:	f8 94       	cli
+
+0000019c <__stop_program>:
+ 19c:	ff cf       	rjmp	.-2      	; 0x19c <__stop_program>
