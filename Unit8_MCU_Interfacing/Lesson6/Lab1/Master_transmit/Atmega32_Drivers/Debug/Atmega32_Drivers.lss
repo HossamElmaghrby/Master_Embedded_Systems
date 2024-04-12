@@ -1,0 +1,394 @@
+
+Atmega32_Drivers.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000023a  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000002  00800060  0000023a  000002ce  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000004  00800062  00800062  000002d0  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000002d0  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000300  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000128  00000000  00000000  0000033c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000011c5  00000000  00000000  00000464  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000976  00000000  00000000  00001629  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000009a3  00000000  00000000  00001f9f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000002e8  00000000  00000000  00002944  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000844  00000000  00000000  00002c2c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000072e  00000000  00000000  00003470  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000e8  00000000  00000000  00003b9e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 93 00 	jmp	0x126	; 0x126 <__vector_12>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 bf 00 	jmp	0x17e	; 0x17e <__vector_15>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ea e3       	ldi	r30, 0x3A	; 58
+  68:	f2 e0       	ldi	r31, 0x02	; 2
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a2 36       	cpi	r26, 0x62	; 98
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a2 e6       	ldi	r26, 0x62	; 98
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a6 36       	cpi	r26, 0x66	; 102
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 49 00 	call	0x92	; 0x92 <main>
+  8a:	0c 94 1b 01 	jmp	0x236	; 0x236 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <main>:
+
+
+int main(void)
+{
+    unsigned char ch=0;
+    I2C_Init(0x48);
+  92:	88 e4       	ldi	r24, 0x48	; 72
+  94:	90 e0       	ldi	r25, 0x00	; 0
+  96:	0e 94 6d 00 	call	0xda	; 0xda <I2C_Init>
+#include "Atmega32_SPI_Driver.h"
+
+
+int main(void)
+{
+    unsigned char ch=0;
+  9a:	c0 e0       	ldi	r28, 0x00	; 0
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  9c:	2f e9       	ldi	r18, 0x9F	; 159
+  9e:	86 e8       	ldi	r24, 0x86	; 134
+  a0:	91 e0       	ldi	r25, 0x01	; 1
+  a2:	21 50       	subi	r18, 0x01	; 1
+  a4:	80 40       	sbci	r24, 0x00	; 0
+  a6:	90 40       	sbci	r25, 0x00	; 0
+  a8:	e1 f7       	brne	.-8      	; 0xa2 <main+0x10>
+  aa:	00 c0       	rjmp	.+0      	; 0xac <main+0x1a>
+  ac:	00 00       	nop
+    I2C_Init(0x48);
+    while (1)
+    {
+	    _delay_ms(500);
+	    I2C_Start();                    //Transmit Start Condition
+  ae:	0e 94 80 00 	call	0x100	; 0x100 <I2C_Start>
+	    I2C_Write(0b11010000+0);       //Transmit  SLA + W(0)
+  b2:	80 ed       	ldi	r24, 0xD0	; 208
+  b4:	90 e0       	ldi	r25, 0x00	; 0
+  b6:	0e 94 89 00 	call	0x112	; 0x112 <I2C_Write>
+	    while ((TWSR) != 0x18);       //SLA + W(0) has been transmitted and ACK has been Received
+  ba:	81 b1       	in	r24, 0x01	; 1
+  bc:	88 31       	cpi	r24, 0x18	; 24
+  be:	e9 f7       	brne	.-6      	; 0xba <main+0x28>
+	    I2C_Write(ch++);             // Transmit Data
+  c0:	d1 e0       	ldi	r29, 0x01	; 1
+  c2:	dc 0f       	add	r29, r28
+  c4:	8c 2f       	mov	r24, r28
+  c6:	90 e0       	ldi	r25, 0x00	; 0
+  c8:	0e 94 89 00 	call	0x112	; 0x112 <I2C_Write>
+	    while ((TWSR) != 0x28);     //Data has been transmitted and ACK has been Received
+  cc:	81 b1       	in	r24, 0x01	; 1
+  ce:	88 32       	cpi	r24, 0x28	; 40
+  d0:	e9 f7       	brne	.-6      	; 0xcc <main+0x3a>
+	    I2C_Stop();                //Transmit Stop condition
+  d2:	0e 94 90 00 	call	0x120	; 0x120 <I2C_Stop>
+    {
+	    _delay_ms(500);
+	    I2C_Start();                    //Transmit Start Condition
+	    I2C_Write(0b11010000+0);       //Transmit  SLA + W(0)
+	    while ((TWSR) != 0x18);       //SLA + W(0) has been transmitted and ACK has been Received
+	    I2C_Write(ch++);             // Transmit Data
+  d6:	cd 2f       	mov	r28, r29
+	    while ((TWSR) != 0x28);     //Data has been transmitted and ACK has been Received
+	    I2C_Stop();                //Transmit Stop condition
+    }
+  d8:	e1 cf       	rjmp	.-62     	; 0x9c <main+0xa>
+
+000000da <I2C_Init>:
+{
+	TWCR = (1<<TWINT)|(1<<TWEA)|(1<<TWEN);
+	while ((TWCR & 0x80)==0);
+	return TWDR;
+	
+}
+  da:	9b 01       	movw	r18, r22
+  dc:	ac 01       	movw	r20, r24
+  de:	60 e0       	ldi	r22, 0x00	; 0
+  e0:	72 e1       	ldi	r23, 0x12	; 18
+  e2:	8a e7       	ldi	r24, 0x7A	; 122
+  e4:	90 e0       	ldi	r25, 0x00	; 0
+  e6:	0e 94 f9 00 	call	0x1f2	; 0x1f2 <__udivmodsi4>
+  ea:	da 01       	movw	r26, r20
+  ec:	c9 01       	movw	r24, r18
+  ee:	40 97       	sbiw	r24, 0x10	; 16
+  f0:	a1 09       	sbc	r26, r1
+  f2:	b1 09       	sbc	r27, r1
+  f4:	b6 95       	lsr	r27
+  f6:	a7 95       	ror	r26
+  f8:	97 95       	ror	r25
+  fa:	87 95       	ror	r24
+  fc:	80 b9       	out	0x00, r24	; 0
+  fe:	08 95       	ret
+
+00000100 <I2C_Start>:
+ 100:	84 ea       	ldi	r24, 0xA4	; 164
+ 102:	86 bf       	out	0x36, r24	; 54
+ 104:	06 b6       	in	r0, 0x36	; 54
+ 106:	07 fe       	sbrs	r0, 7
+ 108:	fd cf       	rjmp	.-6      	; 0x104 <I2C_Start+0x4>
+ 10a:	81 b1       	in	r24, 0x01	; 1
+ 10c:	88 30       	cpi	r24, 0x08	; 8
+ 10e:	e9 f7       	brne	.-6      	; 0x10a <I2C_Start+0xa>
+ 110:	08 95       	ret
+
+00000112 <I2C_Write>:
+ 112:	83 b9       	out	0x03, r24	; 3
+ 114:	84 e8       	ldi	r24, 0x84	; 132
+ 116:	86 bf       	out	0x36, r24	; 54
+ 118:	06 b6       	in	r0, 0x36	; 54
+ 11a:	07 fe       	sbrs	r0, 7
+ 11c:	fd cf       	rjmp	.-6      	; 0x118 <I2C_Write+0x6>
+ 11e:	08 95       	ret
+
+00000120 <I2C_Stop>:
+void I2C_Stop()
+{
+	TWCR = (1<<TWINT)|(1<<TWEN)|(1<<TWSTO);
+ 120:	84 e9       	ldi	r24, 0x94	; 148
+ 122:	86 bf       	out	0x36, r24	; 54
+ 124:	08 95       	ret
+
+00000126 <__vector_12>:
+			
+}
+
+//================IRQ Function Definitions===============
+ISR(SPI_STC_vect)
+{
+ 126:	1f 92       	push	r1
+ 128:	0f 92       	push	r0
+ 12a:	0f b6       	in	r0, 0x3f	; 63
+ 12c:	0f 92       	push	r0
+ 12e:	11 24       	eor	r1, r1
+ 130:	2f 93       	push	r18
+ 132:	3f 93       	push	r19
+ 134:	4f 93       	push	r20
+ 136:	5f 93       	push	r21
+ 138:	6f 93       	push	r22
+ 13a:	7f 93       	push	r23
+ 13c:	8f 93       	push	r24
+ 13e:	9f 93       	push	r25
+ 140:	af 93       	push	r26
+ 142:	bf 93       	push	r27
+ 144:	ef 93       	push	r30
+ 146:	ff 93       	push	r31
+	G_SPI_Config->P_IRQ_CallBack();
+ 148:	e0 91 62 00 	lds	r30, 0x0062	; 0x800062 <__data_end>
+ 14c:	f0 91 63 00 	lds	r31, 0x0063	; 0x800063 <__data_end+0x1>
+ 150:	07 80       	ldd	r0, Z+7	; 0x07
+ 152:	f0 85       	ldd	r31, Z+8	; 0x08
+ 154:	e0 2d       	mov	r30, r0
+ 156:	09 95       	icall
+ 158:	ff 91       	pop	r31
+ 15a:	ef 91       	pop	r30
+ 15c:	bf 91       	pop	r27
+ 15e:	af 91       	pop	r26
+ 160:	9f 91       	pop	r25
+ 162:	8f 91       	pop	r24
+ 164:	7f 91       	pop	r23
+ 166:	6f 91       	pop	r22
+ 168:	5f 91       	pop	r21
+ 16a:	4f 91       	pop	r20
+ 16c:	3f 91       	pop	r19
+ 16e:	2f 91       	pop	r18
+ 170:	0f 90       	pop	r0
+ 172:	0f be       	out	0x3f, r0	; 63
+ 174:	0f 90       	pop	r0
+ 176:	1f 90       	pop	r1
+ 178:	18 95       	reti
+
+0000017a <MCAL_UART_SendNoBlock>:
+	 {
+		 
+		 UART_Interrupt_Enable_TXCIE;
+		 TX_str =str ;
+		 MCAL_UART_SendNoBlock(str[0]);
+		 flag_send = 0;
+ 17a:	8c b9       	out	0x0c, r24	; 12
+ 17c:	08 95       	ret
+
+0000017e <__vector_15>:
+	 }
+}
+
+ISR(USART_TXC_vect)
+{
+ 17e:	1f 92       	push	r1
+ 180:	0f 92       	push	r0
+ 182:	0f b6       	in	r0, 0x3f	; 63
+ 184:	0f 92       	push	r0
+ 186:	11 24       	eor	r1, r1
+ 188:	2f 93       	push	r18
+ 18a:	3f 93       	push	r19
+ 18c:	4f 93       	push	r20
+ 18e:	5f 93       	push	r21
+ 190:	6f 93       	push	r22
+ 192:	7f 93       	push	r23
+ 194:	8f 93       	push	r24
+ 196:	9f 93       	push	r25
+ 198:	af 93       	push	r26
+ 19a:	bf 93       	push	r27
+ 19c:	ef 93       	push	r30
+ 19e:	ff 93       	push	r31
+	static uint8 i= 1;
+	if(TX_str[i] != 0)
+ 1a0:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 1a4:	e0 91 64 00 	lds	r30, 0x0064	; 0x800064 <TX_str>
+ 1a8:	f0 91 65 00 	lds	r31, 0x0065	; 0x800065 <TX_str+0x1>
+ 1ac:	e8 0f       	add	r30, r24
+ 1ae:	f1 1d       	adc	r31, r1
+ 1b0:	80 81       	ld	r24, Z
+ 1b2:	88 23       	and	r24, r24
+ 1b4:	41 f0       	breq	.+16     	; 0x1c6 <__vector_15+0x48>
+	{
+		MCAL_UART_SendNoBlock(TX_str[i]);
+ 1b6:	0e 94 bd 00 	call	0x17a	; 0x17a <MCAL_UART_SendNoBlock>
+		i++;
+ 1ba:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 1be:	8f 5f       	subi	r24, 0xFF	; 255
+ 1c0:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 1c4:	05 c0       	rjmp	.+10     	; 0x1d0 <__vector_15+0x52>
+	}
+	else
+	{
+		i=1;
+ 1c6:	81 e0       	ldi	r24, 0x01	; 1
+ 1c8:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+		flag_send= 1;
+ 1cc:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <flag_send>
+	}
+}
+ 1d0:	ff 91       	pop	r31
+ 1d2:	ef 91       	pop	r30
+ 1d4:	bf 91       	pop	r27
+ 1d6:	af 91       	pop	r26
+ 1d8:	9f 91       	pop	r25
+ 1da:	8f 91       	pop	r24
+ 1dc:	7f 91       	pop	r23
+ 1de:	6f 91       	pop	r22
+ 1e0:	5f 91       	pop	r21
+ 1e2:	4f 91       	pop	r20
+ 1e4:	3f 91       	pop	r19
+ 1e6:	2f 91       	pop	r18
+ 1e8:	0f 90       	pop	r0
+ 1ea:	0f be       	out	0x3f, r0	; 63
+ 1ec:	0f 90       	pop	r0
+ 1ee:	1f 90       	pop	r1
+ 1f0:	18 95       	reti
+
+000001f2 <__udivmodsi4>:
+ 1f2:	a1 e2       	ldi	r26, 0x21	; 33
+ 1f4:	1a 2e       	mov	r1, r26
+ 1f6:	aa 1b       	sub	r26, r26
+ 1f8:	bb 1b       	sub	r27, r27
+ 1fa:	fd 01       	movw	r30, r26
+ 1fc:	0d c0       	rjmp	.+26     	; 0x218 <__udivmodsi4_ep>
+
+000001fe <__udivmodsi4_loop>:
+ 1fe:	aa 1f       	adc	r26, r26
+ 200:	bb 1f       	adc	r27, r27
+ 202:	ee 1f       	adc	r30, r30
+ 204:	ff 1f       	adc	r31, r31
+ 206:	a2 17       	cp	r26, r18
+ 208:	b3 07       	cpc	r27, r19
+ 20a:	e4 07       	cpc	r30, r20
+ 20c:	f5 07       	cpc	r31, r21
+ 20e:	20 f0       	brcs	.+8      	; 0x218 <__udivmodsi4_ep>
+ 210:	a2 1b       	sub	r26, r18
+ 212:	b3 0b       	sbc	r27, r19
+ 214:	e4 0b       	sbc	r30, r20
+ 216:	f5 0b       	sbc	r31, r21
+
+00000218 <__udivmodsi4_ep>:
+ 218:	66 1f       	adc	r22, r22
+ 21a:	77 1f       	adc	r23, r23
+ 21c:	88 1f       	adc	r24, r24
+ 21e:	99 1f       	adc	r25, r25
+ 220:	1a 94       	dec	r1
+ 222:	69 f7       	brne	.-38     	; 0x1fe <__udivmodsi4_loop>
+ 224:	60 95       	com	r22
+ 226:	70 95       	com	r23
+ 228:	80 95       	com	r24
+ 22a:	90 95       	com	r25
+ 22c:	9b 01       	movw	r18, r22
+ 22e:	ac 01       	movw	r20, r24
+ 230:	bd 01       	movw	r22, r26
+ 232:	cf 01       	movw	r24, r30
+ 234:	08 95       	ret
+
+00000236 <_exit>:
+ 236:	f8 94       	cli
+
+00000238 <__stop_program>:
+ 238:	ff cf       	rjmp	.-2      	; 0x238 <__stop_program>
