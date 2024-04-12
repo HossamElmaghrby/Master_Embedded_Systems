@@ -1,0 +1,9 @@
+stm32f103x6_USART_Driver.c:25:6:MCAL_USART_Init	24	static
+stm32f103x6_USART_Driver.c:93:6:MCAL_USART_DeInit	16	static
+stm32f103x6_USART_Driver.c:112:7:MCAL_USART_GPIO_Set_Pins	24	static
+stm32f103x6_USART_Driver.c:236:6:MCAL_USART_sendData	24	static
+stm32f103x6_USART_Driver.c:284:6:MCAL_UART_WAIT_TC	16	static
+stm32f103x6_USART_Driver.c:302:6:MCAL_USART_ReceiveData	24	static
+stm32f103x6_USART_Driver.c:406:6:USART1_IRQHandler	8	static
+stm32f103x6_USART_Driver.c:411:6:USART2_IRQHandler	8	static
+stm32f103x6_USART_Driver.c:416:6:USART3_IRQHandler	8	static
