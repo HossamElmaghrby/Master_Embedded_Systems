@@ -1,0 +1,36 @@
+        -:    0:Source:main_program.c
+        -:    0:Programs:6
+        -:    1:
+        -:    2:#include "main_program.h"
+        -:    3:
+        -:    4://modules variables
+        -:    5:int pressure_value =0 ;
+        -:    6:int pressure_threshold =20 ;
+        -:    7:
+function get_pressure_value called 1 returned 100% blocks executed 67%
+        1:    8:void get_pressure_value(int P)
+        1:    8-block  0
+        -:    9:{
+        1:   10:	pressure_value = P ;
+        -:   11:
+        1:   12:   if(pressure_value > pressure_threshold )
+        1:   12-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+        -:   13:    {
+    #####:   14:		high_pressure_detected();
+    $$$$$:   14-block  0
+call    0 never executed
+        -:   15:    } 
+        -:   16:
+        1:   17:   	MP_state=STATE(high_pressure_detection);
+        1:   18:}
+        -:   19:
+function ST_high_pressure_detection called 1 returned 100% blocks executed 100%
+        1:   20:STATE_define(high_pressure_detection)
+        1:   20-block  0
+        -:   21:{
+        1:   22:	MP_state_id = high_pressure_detection;
+        -:   23:
+        1:   24:	MP_state=STATE(high_pressure_detection);
+        1:   25:}

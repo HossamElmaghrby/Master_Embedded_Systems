@@ -1,0 +1,48 @@
+        -:    0:Source:Pressure_sensor_driver.c
+        -:    0:Programs:6
+        -:    1:
+        -:    2:
+        -:    3:#include "pressure_sensor_driver.h"
+        -:    4:
+        -:    5://Module variables
+        -:    6:int Pressure_Value = 0;
+        -:    7:int pressure_sensor_pull_time = 10 ;
+        -:    8:
+function PS_init called 1 returned 100% blocks executed 100%
+        1:    9:void PS_init()
+        1:    9-block  0
+        -:   10:{
+        -:   11:	//init Pressure Sensor
+        -:   12:	//call the Pressure sensor Driver 
+        1:   13:}
+        -:   14:
+        -:   15:
+function ST_PS_reading called 1 returned 100% blocks executed 100%
+        1:   16:STATE_define(PS_reading)
+        1:   16-block  0
+        -:   17:{
+        -:   18:	//state action
+        1:   19:	PS_state_id = PS_reading ;
+        -:   20:	//read from the Pressure sensor
+        1:   21:    Pressure_Value = getPressureVal();
+        1:   21-block  0
+call    0 returned 1
+        -:   22:
+        1:   23:    get_pressure_value(Pressure_Value);
+call    0 returned 1
+        -:   24:
+        1:   25:     PS_state = STATE(PS_waiting);
+        1:   26:}
+        -:   27:
+function ST_PS_waiting called 0 returned 0% blocks executed 0%
+    #####:   28:STATE_define(PS_waiting)
+    $$$$$:   28-block  0
+        -:   29:{
+        -:   30:	//state action
+    #####:   31:    PS_state_id = PS_waiting ;
+        -:   32:    //timer 
+    #####:   33:    Delay(pressure_sensor_pull_time);
+    $$$$$:   33-block  0
+call    0 never executed
+    #####:   34:    PS_state=STATE(PS_reading);
+    #####:   35:}

@@ -1,0 +1,138 @@
+        -:    0:Source:main.c
+        -:    0:Programs:6
+        -:    1:
+        -:    2:#include "state.h"
+        -:    3:#include "pressure_sensor_driver.h"
+        -:    4:#include "main_program.h"
+        -:    5:#include "Alarm_monitor.h"
+        -:    6:#include "Alarm_actuator_driver.h"
+        -:    7:#include "test.h"
+        -:    8:
+function setup called 1 returned 100% blocks executed 100%
+        1:    9:void setup()
+        1:    9-block  0
+        -:   10:{
+        -:   11:   	//init all the drivers
+        -:   12:	//init IRQ .....
+        -:   13:	//init HAL US_Driver DC_Driver
+        -:   14:	//init Block
+        -:   15:	//set STates pointer for each block 
+        1:   16:	PS_state =STATE(PS_reading);
+        1:   17:	MP_state =STATE(high_pressure_detection);
+        1:   18:	AM_state =STATE(alarm_of);
+        1:   19:	AA_state =STATE(AA_waiting);
+        1:   20:}
+        -:   21:
+function main called 1 returned 0% blocks executed 80%
+        1:   22:void main()
+        1:   22-block  0
+        -:   23:{
+        1:   24:	PS_init();
+        1:   24-block  0
+call    0 returned 1
+        1:   25:	AA_init();
+call    0 returned 1
+        -:   26:
+        1:   27:	setup();
+call    0 returned 1
+        1:   28:	GPIO_INITIALIZATION();
+call    0 returned 1
+        -:   29:
+        -:   30:	while(1)
+        -:   31:	{
+        1:   32:		PS_state =STATE(PS_reading);
+        1:   33:		MP_state =STATE(high_pressure_detection);
+        1:   34:		AM_state =STATE(alarm_of);
+        1:   35:		AA_state =STATE(AA_waiting);
+        1:   36:	    (*PS_state)();
+        1:   36-block  0
+call    0 returned 1
+        1:   37:	    (*MP_state)();
+call    0 returned 1
+        1:   38:	    (*AM_state)();
+call    0 returned 0
+    #####:   39:	    (*AA_state)();
+call    0 never executed
+        -:   40:        
+    #####:   41:        Delay(1000);
+call    0 never executed
+        -:   42:	}
+        -:   43:}
+        -:   44:
+        -:   45:unsigned char Test_Case_Number = 1;
+function Test_get_pressure called 1 returned 100% blocks executed 100%
+        1:   46:unsigned int Test_get_pressure()
+        1:   46-block  0
+        -:   47:{
+        1:   48:    unsigned int Test_pressure_Input_Value = 0 ;
+        -:   49:
+        1:   50:    switch(Test_Case_Number)
+        1:   50-block  0
+branch  0 taken 1
+branch  1 taken 0
+        -:   51:    {
+        1:   52:    case 1:
+        1:   53:    	printf("\n\n\n======================================\n");
+        1:   53-block  0
+call    0 returned 1
+        1:   54:    	printf("******************Integration Test************\n");
+call    0 returned 1
+        1:   55:    	printf("pressure Control Project\n");
+call    0 returned 1
+        1:   56:    	printf(".Eng. Hossam Elmaghrbey\n");
+call    0 returned 1
+        1:   57:    	printf("\n\n\n======================================\n");
+call    0 returned 1
+        -:   58:
+        1:   59:    	Test_pressure_Input_Value =12 ;
+        1:   60:    	printf("\n\n\n======================================\n");
+call    0 returned 1
+        1:   61:    	printf("Test Case 1:Input =12 Output:NOAlarm 0\n");
+call    0 returned 1
+        1:   62:    	printf("Test Case 1: Running \n");
+call    0 returned 1
+        1:   63:    	break ;
+        -:   64:    }
+        -:   65:
+        1:   66:    return Test_pressure_Input_Value ;
+        1:   66-block  0
+        -:   67:}
+        -:   68:
+function Test_set_Alarm called 1 returned 0% blocks executed 50%
+        1:   69:void Test_set_Alarm(int i)
+        1:   69-block  0
+        -:   70:{
+        1:   71:    if(Test_Case_Number == 1 && i ==1)
+        1:   71-block  0
+branch  0 taken 1 (fallthrough)
+branch  1 taken 0
+        1:   71-block  1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0
+        -:   72:    {
+        1:   73:    	printf("Test Case 1: FAIL \n");
+        1:   73-block  0
+call    0 returned 1
+        1:   74:    	Test_Case_Number = 2 ;
+        1:   75:    	exit(1);
+call    0 returned 0
+        -:   76:    }
+    #####:   77:    else if(Test_Case_Number ==1 && i == 0)
+    $$$$$:   77-block  0
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   77-block  1
+branch  2 never executed
+branch  3 never executed
+        -:   78:    {
+    #####:   79:    	printf("Test Case 1: PASS \n");
+    $$$$$:   79-block  0
+call    0 never executed
+    #####:   80:    	printf("===============================");
+call    0 never executed
+    #####:   81:    	Test_Case_Number =2 ;
+    #####:   82:    	exit(1);
+call    0 never executed
+        -:   83:    }
+        -:   84:
+    #####:   85:}
