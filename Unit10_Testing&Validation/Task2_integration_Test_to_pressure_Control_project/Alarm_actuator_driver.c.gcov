@@ -1,0 +1,42 @@
+        -:    0:Source:Alarm_actuator_driver.c
+        -:    0:Programs:6
+        -:    1:
+        -:    2:
+        -:    3:#include "Alarm_actuator_driver.h"
+        -:    4:
+function AA_init called 1 returned 100% blocks executed 100%
+        1:    5:void AA_init(){
+        1:    5-block  0
+        -:    6:
+        -:    7:	//init alarm actuator 
+        -:    8:	//call the alarm actuator driver
+        1:    9:}
+        -:   10:
+        -:   11:
+function start_alarm called 0 returned 0% blocks executed 0%
+    #####:   12:void start_alarm()
+    $$$$$:   12-block  0
+        -:   13:{
+    #####:   14:   Set_Alarm_actuator(0);
+    $$$$$:   14-block  0
+call    0 never executed
+        -:   15:
+        -:   16:   STATE(AA_waiting);
+    #####:   17:}
+function stop_alarm called 1 returned 0% blocks executed 100%
+        1:   18:void stop_alarm()
+        1:   18-block  0
+        -:   19:{
+        1:   20:   Set_Alarm_actuator(1);
+        1:   20-block  0
+call    0 returned 0
+        -:   21:
+        -:   22:   STATE(AA_waiting);
+        -:   23:
+    #####:   24:}
+function ST_AA_waiting called 0 returned 0% blocks executed 0%
+    #####:   25:STATE_define(AA_waiting)
+    $$$$$:   25-block  0
+        -:   26:{
+    #####:   27:   AA_state_id = AA_waiting ;
+    #####:   28:}
