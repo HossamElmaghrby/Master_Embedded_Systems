@@ -1,0 +1,5 @@
+Secheduler.c:31:6:OS_SVC_Services	24	static
+Secheduler.c:54:6:PendSV_Handler	4	static
+Secheduler.c:59:6:OS_SVC_Set	16	static,ignoring_inline_asm
+Secheduler.c:80:6:MYRTOS_Cereate_MainStack	4	static
+Secheduler.c:90:16:MYRTOS_Init	16	static
